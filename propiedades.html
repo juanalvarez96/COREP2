@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CORE2016 P2</title>
+</head>
+<body>
+<div id="name">
+</div>
+<script type="text/javascript">
+    var objeto = prompt("Introduzca el nombre del objeto JavaScript");
+    document.getElementById("name").innerHTML = objeto;
+    var keys=Object.keys(eval(objeto));
+    var values=[];
+    for(var property in keys){
+        if(property instanceof Object){
+            values.push("No imprimible. Tipo objeto.");
+        }
+        else{
+            values.push("Imprimible. No objeto");
+        }
+    }
+
+    function createTable(values, keys) {
+        var body = document.getElementsByTagName("body")[0];
+        var tabla   = document.createElement("table");
+        var tblBody = document.createElement("tbody");
+        for (var i = 0; i < values.length; i++) {
+            // Crea las hileras de la tabla
+            var hilera = document.createElement("tr");
+            for(var j=0;j<2;j++){
+            var columna=document.createElement("td");
+            if(j==0){
+                var textoCelda = document.createTextNode(keys[i]);
+                columna.appendChild(textoCelda);
+                hilera.appendChild(columna);
+            }
+            else{
+                var textCelda=document.createTextNode(values[i]);
+                columna.appendChild(textCelda);
+                hilera.appendChild(columna)
+
+            }
+            }
+            tblBody.appendChild(hilera);
+        }
+        tabla.appendChild(tblBody);
+        body.appendChild(tabla);
+        tabla.setAttribute("border","2");
+
+    }
+    createTable(values, keys);
+
+
+</script>
+
+
+
+</body>
+</html>
